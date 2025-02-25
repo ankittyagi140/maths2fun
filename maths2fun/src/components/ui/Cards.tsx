@@ -1,7 +1,15 @@
 'use client'
 import { AppCards } from "@/utils/types";
+import { useRouter } from "next/navigation";
+const Cards:React.FC<AppCards>=({title,description,Icon,id,categories,bg,textColor,path})=>{
 
-const Cards:React.FC<AppCards>=({title,description,Icon,id,categories,bg,textColor})=>{
+  const Router=useRouter();
+  const handlePuzzleCardClick=(path:string)=>{
+    if(path){
+      Router.push(path)
+    }
+    
+  }
     return(<>
     
     {
@@ -30,6 +38,7 @@ const Cards:React.FC<AppCards>=({title,description,Icon,id,categories,bg,textCol
            <div className="p-6">
              <p className="text-neutral-600 mb-4 font-['Nunito']">{description}</p>
            </div>
+           <button className="bg-transparent border-2 border-[#4ECDC4] w-full text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300" onClick={()=>handlePuzzleCardClick(path)}>Explore</button>
        </div>
     }
     </>

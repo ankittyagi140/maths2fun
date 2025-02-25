@@ -16,8 +16,8 @@ import { usePathname } from 'next/navigation';
 const Header: React.FC = ({ }) => {
 
     const subHeadersLinks: SubHeadersLinks[] = [
-        { title: 'All Apps', link: '/', isActive: false, id: useId(), icon: LayoutDashboard },
-        { title: 'My Apps', link: '/myapps', isActive: false, id: useId(), icon: Package },
+        { title: 'Home', link: '/', isActive: false, id: useId(), icon: LayoutDashboard },
+        { title: 'All Puzzles', link: '/all-puzzles', isActive: false, id: useId(), icon: Package },
         { title: 'Achievements', link: '/achievements', isActive: false, id: useId(), icon: Trophy },
     ];
     const kidEmojis = useMemo(() => ['👦', '👧', '🧒', '🏽', '👧🏾'], []);

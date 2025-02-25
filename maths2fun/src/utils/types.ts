@@ -23,10 +23,22 @@ interface AppCards{
     categories?:boolean,
     bg?:string,
     textColor:string
+    path?:string
+}
+
+interface PuzzlesCards{
+    id: string,
+    name: string,
+    icon:string,
+    description: string,
+    category: string,
+    path: string,
+    slug: string,
+    createdAt: Date
 }
 
 
 // Exporting as a type if needed elsewhere
-export type { CustomButton,SubHeadersLinks,AppCards };
+export type { CustomButton,SubHeadersLinks,AppCards,PuzzlesCards };
 
 
