@@ -1,11 +1,11 @@
 "use client";
 
-import { useId } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import UUID for unique IDs
 import Cards from "@/components/ui/Cards";
 import { AppCards } from "@/utils/types";
 import { LandPlot, Pyramid, Calculator, Radius, Brain } from "lucide-react";
 import Faqs from "@/components/custom/Faqs";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
   const cardsElements: AppCards[] = [
@@ -25,7 +25,22 @@ export default function Home() {
     { title: "Measurement & Estimation Puzzles", description: "These puzzles involve real-world applications of math, requiring players to estimate weight, volume, time, and distances. From filling containers to calculating time on clock faces, players develop skills in unit conversions and precise measurements.", id: uuidv4(), Icon: LandPlot, bg: "#FF6B6B", textColor: "white", path: "/all-puzzles/measurement-estimation-puzzles" },
     { title: "Graph & Coordinate-Based Puzzles", description: "Players engage with coordinate planes, plotting points, and analyzing graphs to solve math challenges. These puzzles include treasure hunts using coordinates, graph-based challenges, and equation plotters, reinforcing skills in geometry and data interpretation.", id: uuidv4(), Icon: LandPlot, bg: "#FFE66D", textColor: "black", path: "/all-puzzles/graph-coordinate-based-puzzles" },
     { title: "Algebra & Advanced Math Puzzles", description: "These puzzles introduce algebraic reasoning, polynomials, matrices, and calculus in an engaging way. Players solve for variables, arrange algebraic expressions, and work with vectors or derivatives, making abstract math concepts more interactive.", id: uuidv4(), Icon: LandPlot, bg: "#4ECDC4", textColor: "white", path: "/all-puzzles/algebra-advance-maths-puzzles" },
+    {
+      title: "Maths Riddles",
+      description: "Challenge your mind with tricky math riddles that test your logic, reasoning, and problem-solving skills. Solve number puzzles, tricky word problems, and brain teasers to sharpen your math abilities in a fun way!",
+      id: uuidv4(),
+      Icon: LandPlot,
+      bg: "#FFE66D",
+      path: "/all-puzzles/maths-riddles",
+      textColor: "black",
+    }
+    
   ];
+  const router = useRouter();
+
+  const handleExploreAllPuzzles=()=>{
+router.push('/all-puzzles')
+  }
 
   return (
     <>
@@ -148,7 +163,7 @@ export default function Home() {
           ))}
         </div>
         <div className="text-center mt-12">
-          <button className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
+          <button onClick={handleExploreAllPuzzles} className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
             Explore All Puzzles
           </button>
         </div>

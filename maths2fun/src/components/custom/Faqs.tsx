@@ -3,7 +3,7 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/accordion"
+  } from "@/components/ui/Accordian"
 
 const Faqs:React.FC=()=>{
     return (

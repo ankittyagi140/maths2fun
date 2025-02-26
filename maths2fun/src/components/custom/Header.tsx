@@ -9,7 +9,9 @@ import {
     Trophy,
 } from 'lucide-react';
 import { useId } from "react";
-import { usePathname } from 'next/navigation';
+import { usePathname ,useRouter} from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { useToast } from '@/context/Toastcontext';
 
 
 
@@ -20,20 +22,40 @@ const Header: React.FC = ({ }) => {
         { title: 'All Puzzles', link: '/all-puzzles', isActive: false, id: useId(), icon: Package },
         { title: 'Achievements', link: '/achievements', isActive: false, id: useId(), icon: Trophy },
     ];
+
     const kidEmojis = useMemo(() => ['👦', '👧', '🧒', '🏽', '👧🏾'], []);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const { loading, user, logout, isAuth } = useAuth();
+  const [error,setError] = useState("");
+  const {addToast} = useToast()
 
+
+console.log(isAuth)
     const pathName = usePathname();
+    const router = useRouter();
 
-    const handleLogout=()=>{}
+    const handleLogout=()=>{
+        try{
+            logout();
+        router.push('/')
+        addToast("Logout Success","success")
+
+        }catch(error:any){
+            addToast(error.message,"error")
+        }
+    }
 
 
     const [kidIcon, setKidIcon] = useState('👦');
 
-    const handleProfileSettings=()=>{}
+    const handleProfileSettings=()=>{
+        router.push('/profile')
+    }
 
-    const handleLogin=()=>{}
+    const handleLogin=()=>{
+        router.push('/login')
+    }
 
 
     return (
@@ -70,31 +92,19 @@ const Header: React.FC = ({ }) => {
                                 onClick={handleProfileSettings}>
                                 {kidIcon}
                             </div>
-
                             <span className="hidden sm:block text-white text-sm font-medium">
                                 Welcome 
                             </span>
-
-                            {isLoggedIn ? (
+                            {isAuth ? (
                                 <button
                                     onClick={handleLogout}
-                                    className="bg-red-600 text-white px-3 py-1.5 md:px-4 md:py-2 rounded hover:bg-red-700 transition-colors flex items-center gap-2 text-sm md:text-base"
+                                    className="bg-[#FF6B6B] text-white px-4 py-2 font-bold hover:bg-[#ff8585] transition-colors duration-300"
                                     disabled={isLoggingOut}
-                                >
-                                    {isLoggingOut ? (
-                                        <>
-                                            {/* <Loader className="animate-spin h-4 w-4 md:h-5 md:w-5" /> */}
-                                            <span className="hidden sm:inline">Logging Out...</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <span className="sm:inline">Logout</span>
-                                        </>
-                                    )}
+                                >Logout
                                 </button>
                             ) : (
                                 <button onClick={handleLogin}
-                                    className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] p-2 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn">
+                                    className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] py-2 px-4 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn">
                                     <span className="sm:inline">Login</span>
                                 </button>
                             )}
