@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState, useContext, ReactNode, useEffect } from "react";
+import { createContext, useState, useContext, ReactNode } from "react";
 import { CheckCircle, XCircle, Info, X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -78,7 +78,7 @@ interface ToastProps {
 }
 
 // Toast Component
-const Toast: React.FC<ToastProps> = ({ id, message, type, onClose }) => {
+const Toast: React.FC<ToastProps> = ({  message, type, onClose }) => {
   const icons = {
     success: <CheckCircle className="text-green-500 w-5 h-5" />,
     error: <XCircle className="text-red-500 w-5 h-5" />,

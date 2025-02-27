@@ -13,7 +13,6 @@ export default function SignupPage() {
   const [error, setError] = useState('');
   const router = useRouter();
   const {addToast} = useToast()
-  console.log(addToast)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +20,14 @@ export default function SignupPage() {
       await signup(email, password);
       router.push('/login');
       addToast("Signup Success",'success')
-    } catch (error:any) {
-      setError(error.message);
-      addToast(error.message,'error')
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+        addToast(error.message, 'error');
+      } else {
+        setError('An unexpected error occurred');
+        addToast('An unexpected error occurred', 'error');
+      }
     }
   };
 

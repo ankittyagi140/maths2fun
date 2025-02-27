@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useToast } from "@/context/Toastcontext";
 
 export default function LoginPage() {
-  const { login, googleLogin, loading, user,message,isAuth } = useAuth();
+  const { login, googleLogin, loading,isAuth } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
@@ -19,11 +19,15 @@ export default function LoginPage() {
     try {
       await login(email, password);
       addToast('User Login Success','success')
-      console.log("login success")
       router.push('/');
-    } catch (err:any) {
-      setError(err.message)
-        addToast(err.message,'error');
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+        addToast(error.message, 'error');
+      } else {
+        setError('An unexpected error occurred');
+        addToast('An unexpected error occurred', 'error');
+      }
     }
   };
 
@@ -32,15 +36,19 @@ export default function LoginPage() {
       if(!isAuth){
       await googleLogin()
       addToast('User Login Success','success')
-      console.log("login success")
       router.push('/');
       }else{
         addToast("User is already login",'error')
       }
     }
-    catch(err:any){
-      setError(err.message)
-      addToast(err.message,'error')
+    catch(error:unknown){
+      if (error instanceof Error) {
+        setError(error.message);
+        addToast(error.message, 'error');
+      } else {
+        setError('An unexpected error occurred');
+        addToast('An unexpected error occurred', 'error');
+      }
     }
   }
 
@@ -95,7 +103,7 @@ className="w-full p-2.5 sm:p-3 border rounded-lg  focus:ring-blue-500 text-sm sm
         </div>
 
         <p className="mt-4 text-center text-sm text-gray-600">
-          Don't have an account?{' '}
+          Don&ldquo;t have an account?{' '}
           <Link href="/signup" className="font-medium text-primary hover:text-primary-dark">
             Sign up
           </Link>

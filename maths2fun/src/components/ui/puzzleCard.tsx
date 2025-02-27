@@ -8,6 +8,7 @@ interface PuzzleCardProps {
   description: string;
   category?: string;
   path?: string;
+  difficulty?: string;
 }
 
 const PuzzleCard: FC<PuzzleCardProps> = ({ name, icon, description, path ,difficulty}) => {

@@ -1,8 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Info, Puzzle, ChevronDown, ChevronUp, ArrowLeft, Lightbulb } from 'lucide-react';
-import Link from 'next/link';
+import { Info, Puzzle, ChevronDown, ChevronUp, Lightbulb } from 'lucide-react';
 import { allRiddles } from '@/lib/allRiddles';
 import { Riddle } from '@/lib/allRiddles';
 

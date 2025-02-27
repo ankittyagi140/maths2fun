@@ -42,22 +42,30 @@ export default function Home() {
 router.push('/all-puzzles')
   }
 
+  const handleLearnMoreClick=()=>{
+    router.push('/learn-more')
+  }
+
+  const handleStartPlayingClick=()=>{
+  router.push('/all-puzzles')
+  }
+
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-black w-full flex-col flex justify-center items-center p-20">
-        <div className="pt-20 pb-20">
-          <h1 className="text-6xl font-bold mb-6 text-[#FFE66D] font-['Comic_Sans_MS']">
+      <section className="bg-black w-full flex-col flex justify-center items-center py-8 px-4 md:p-20">
+        <div className="pt-8 pb-8 md:pt-20 md:pb-20">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#FFE66D] text-center font-['Comic_Sans_MS']">
             Make Maths Fun with Puzzles!
           </h1>
-          <h5 className="text-xl text-white mb-12 font-['Nunito'] max-w-2xl mx-auto">
+          <h5 className="text-lg md:text-xl text-white mb-8 md:mb-12 font-['Nunito'] max-w-2xl mx-auto text-center">
             Engage your kids with interactive Maths puzzles that make learning an adventure
           </h5>
-          <div className="flex items-center justify-center gap-8">
-            <button className="bg-[#FF6B6B] text-white px-8 py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
+            <button onClick={handleStartPlayingClick} className="w-full md:w-auto bg-[#FF6B6B] text-white px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 text-sm md:text-base">
               Start Playing
             </button>
-            <button className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
+            <button onClick={handleLearnMoreClick} className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base">
               Learn More
             </button>
           </div>
@@ -65,12 +73,12 @@ router.push('/all-puzzles')
       </section>
 
       {/* Why Kids Love Our Maths Puzzles */}
-      <section className="bg-white p-20">
-        <div className="pt-20 pb-20">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-black font-['Comic_Sans_MS'] animate__animated animate__fadeIn">
+      <section className="bg-white py-12 px-4 md:p-20">
+        <div className="pt-8 pb-8 md:pt-20 md:pb-20">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
             Why Kids Love Our Maths Puzzles
           </h2>
-          <div className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+          <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {cardsElements.map((card) => (
               <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} textColor={card.textColor} />
             ))}
@@ -79,12 +87,12 @@ router.push('/all-puzzles')
       </section>
 
       {/*** How Our Math Puzzles Work ***/}
-      <section id="howItWorks" className="bg-neutral-900 py-20">
+      <section id="howItWorks" className="bg-neutral-900 py-12 px-4 md:py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-[#FFE66D] font-['Comic_Sans_MS'] animate__animated animate__fadeIn">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-[#FFE66D] font-['Comic_Sans_MS']">
             How Our Math Puzzles Work
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div className="text-center animate__animated animate__fadeInUp">
               <div className="bg-[#4ECDC4] rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6">
                 <span className="text-4xl">1️⃣</span>
@@ -117,8 +125,8 @@ router.push('/all-puzzles')
               <p className="text-neutral-300 font-['Nunito']">See your improvement with fun progress charts</p>
             </div>
           </div>
-          <div className="mt-20 bg-neutral-800 rounded-2xl p-8 md:p-12 animate__animated animate__fadeIn">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div className="mt-8 md:mt-20 bg-neutral-800 rounded-xl md:rounded-2xl p-4 md:p-12 animate__animated animate__fadeIn">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-center">
               <div>
                 <h3 className="text-3xl font-bold mb-6 text-[#FFE66D] font-['Comic_Sans_MS']">Ready to Start Learning?</h3>
                 <div className="space-y-4">
@@ -153,28 +161,28 @@ router.push('/all-puzzles')
       </section>
 
       {/* Puzzle Categories */}
-      <section className="bg-white p-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-black font-['Comic_Sans_MS'] animate__animated animate__fadeIn">
+      <section className="bg-white py-12 px-4 md:p-20">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
           Explore Our Puzzle Categories
         </h2>
-        <div className="grid gap-8 grid-cols-[repeat(auto-fit,minmax(320px,1fr))]">
+        <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {cardsForCategories.map((card) => (
             <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} />
           ))}
         </div>
-        <div className="text-center mt-12">
-          <button onClick={handleExploreAllPuzzles} className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
+        <div className="text-center mt-8 md:mt-12">
+          <button onClick={handleExploreAllPuzzles} className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base">
             Explore All Puzzles
           </button>
         </div>
       </section>
 
-      {/*FAQS*/}
-      <section id="faq" className="bg-white py-20">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-neutral-800 font-['Comic_Sans_MS'] animate__animated animate__fadeIn">
+      {/* FAQ Section */}
+      <section id="faq" className="bg-white py-12 px-4 md:py-20">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-neutral-800 font-['Comic_Sans_MS']">
           Frequently Asked Questions
         </h2>
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-3xl mx-auto space-y-4 md:space-y-6">
           <Faqs />
         </div>
       </section>

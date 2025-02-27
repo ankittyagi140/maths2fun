@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '@/firebase/firebase-config';
 import { 
   User, 
@@ -11,6 +11,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup
 } from 'firebase/auth';
+import React from 'react';
 
 export type AuthContextType = {
   user: User | null;
@@ -19,7 +20,6 @@ export type AuthContextType = {
   signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   googleLogin: () => Promise<void>;
-  message:string,
   isAuth:boolean
 };
 
@@ -31,14 +31,12 @@ const AuthContext = createContext<AuthContextType>({
   signup: async () => {},
   logout: async () => {},
   googleLogin: async () => {},
-  message:"",
   isAuth:false
 });
 
-export function AuthProvider({ children }: { children: ReactNode }): JSX.Element {
+export function AuthProvider({ children }: { children: React.ReactNode }): React.ReactElement {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const[message,setMessage] = useState("");
   const [isAuth,setIsAuth] = useState<boolean>(false)
 
   useEffect(() => {
@@ -62,10 +60,13 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
     setIsAuth(true)
-    } catch (error:any) {
-      console.log(error)
+    } catch (error:unknown) {
       setLoading(false);
-      throw error;
+      if (error instanceof Error) {
+       throw error;
+      } else {
+     throw new Error("An unexpected error occurred");
+      }
     }
   };
 
@@ -73,9 +74,12 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
     try {
       setLoading(true);
        await createUserWithEmailAndPassword(auth, email, password);
-    } catch (error:any) {
-      setLoading(false);
-      throw error;
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        throw error;
+       } else {
+      throw new Error("An unexpected error occurred");
+       }
     }
   };
 
@@ -84,9 +88,12 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
       setLoading(true);
       await signOut(auth);
       setIsAuth(false);
-    } catch (error:any) {
-      setLoading(false);
-      throw error;
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        throw error;
+       } else {
+      throw new Error("An unexpected error occurred");
+       }
     }
   };
 
@@ -96,9 +103,12 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
       const provider = new GoogleAuthProvider();
         await signInWithPopup(auth, provider);
         setIsAuth(true)
-    } catch (error:any) {
-      setLoading(false);
-      throw error;
+    } catch (error:unknown) {
+      if (error instanceof Error) {
+        throw error;
+       } else {
+      throw new Error("An unexpected error occurred");
+       }
     }
   };
 
@@ -111,7 +121,6 @@ export function AuthProvider({ children }: { children: ReactNode }): JSX.Element
         signup, 
         logout, 
         googleLogin,
-        message,
         isAuth
       }}
     >

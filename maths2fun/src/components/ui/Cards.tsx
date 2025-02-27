@@ -26,7 +26,7 @@ const Cards:React.FC<AppCards>=({title,description,Icon,id,categories,bg,textCol
            </div>
        </div>
         : 
-        <div key={id} className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate__animated animate__fadeInUp">
+        <div key={id} className="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate__animated animate__fadeInUp flex flex-col h-full">
             <div className='p-6' style={{ backgroundColor: bg }}>
         <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-100 to-purple-100 group-hover:scale-105 transition-transform duration-300 shadow-sm">
           {Icon && <Icon/>}
@@ -35,10 +35,17 @@ const Cards:React.FC<AppCards>=({title,description,Icon,id,categories,bg,textCol
                {title}
              </h3>
              </div>
-           <div className="p-6">
-             <p className="text-neutral-600 mb-4 font-['Nunito']">{description}</p>
+           <div className="p-6 flex-1">
+             <p className="text-neutral-600  mb-4 font-['Nunito']">{description}</p>
            </div>
-           <button className="bg-transparent border-2 border-[#4ECDC4] w-full text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300" onClick={()=>handlePuzzleCardClick(path)}>Explore</button>
+           <div className="px-6 pb-6 mt-auto">
+               <button 
+                 className="w-full border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300" 
+                 onClick={() => path && handlePuzzleCardClick(path)}
+               >
+                 Explore
+               </button>
+           </div>
        </div>
     }
     </>

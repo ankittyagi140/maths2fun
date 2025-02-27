@@ -11,7 +11,7 @@ const Faqs:React.FC=()=>{
           <AccordionItem value="item-1">
             <AccordionTrigger>What age group is this suitable for?</AccordionTrigger>
             <AccordionContent>
-            Our math puzzles are designed for children aged 5-14 years old. We have different difficulty levels to match your child's learning stage.
+            Our math puzzles are designed for children aged 5-14 years old. We have different difficulty levels to match your child&ldquo;s learning stage.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-2">
@@ -23,7 +23,7 @@ const Faqs:React.FC=()=>{
           <AccordionItem value="item-3">
             <AccordionTrigger>Can parents track progress?</AccordionTrigger>
             <AccordionContent>
-            Yes! Our parent dashboard provides detailed insights into your child's learning progress, including time spent, completed puzzles, and areas for improvement.
+            Yes! Our parent dashboard provides detailed insights into your child&ldquo;s learning progress, including time spent, completed puzzles, and areas for improvement.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="item-4">
