@@ -15,8 +15,6 @@ import { usePathname ,useRouter} from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/Toastcontext';
 
-
-
 const Header: React.FC = ({ }) => {
 
     const subHeadersLinks: SubHeadersLinks[] = [
@@ -26,7 +24,7 @@ const Header: React.FC = ({ }) => {
     ];
 
     const kidsIcon = '👦';
-  const { logout, isAuth } = useAuth();
+  const { logout, isAuth,user} = useAuth();
   const {addToast} = useToast()
 
 
@@ -69,9 +67,9 @@ const Header: React.FC = ({ }) => {
         document.addEventListener('mousedown', handleClickOutside);
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
-
     return (
         <header className="bg-black sticky top-0 z-50">
+         
             <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex md:hidden">
@@ -134,8 +132,8 @@ const Header: React.FC = ({ }) => {
                                 onClick={handleProfileSettings}>
                                 {kidsIcon}
                             </div>
-                            <span className="hidden m:block text-white text-sm font-medium">
-                                Welcome 
+                            <span className="hidden sm:block text-white text-sm font-medium">
+                                Welcome {isAuth ? user?.displayName?.toUpperCase() : 'Guest'}
                             </span>
                             {isAuth ? (
                                 <button

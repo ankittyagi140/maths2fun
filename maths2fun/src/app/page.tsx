@@ -6,6 +6,7 @@ import { AppCards } from "@/utils/types";
 import { LandPlot, Pyramid, Calculator, Radius, Brain } from "lucide-react";
 import Faqs from "@/components/custom/Faqs";
 import { useRouter } from 'next/navigation';
+import { useAuth } from "@/context/AuthContext";
 
 export default function Home() {
   const cardsElements: AppCards[] = [
@@ -37,6 +38,7 @@ export default function Home() {
     
   ];
   const router = useRouter();
+  const {isAuth} = useAuth()
 
   const handleExploreAllPuzzles=()=>{
 router.push('/all-puzzles')
@@ -48,6 +50,13 @@ router.push('/all-puzzles')
 
   const handleStartPlayingClick=()=>{
   router.push('/all-puzzles')
+  }
+
+  const handleStartFreeTrial = () => {
+    if (isAuth) {
+      router.push('/all-puzzles')
+    }
+    else router.push('/signup');
   }
 
   return (
@@ -151,9 +160,9 @@ router.push('/all-puzzles')
                 </div>
               </div>
               <div className="text-center md:text-right">
-                <a href="/signup" className="inline-block bg-[#FF6B6B] text-white px-8 py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 animate__animated animate__bounceIn">
+                <button onClick={handleStartFreeTrial} className="inline-block bg-[#FF6B6B] text-white px-8 py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 animate__animated animate__bounceIn">
                   Start Free Trial
-                </a>
+                </button>
               </div>
             </div>
           </div>

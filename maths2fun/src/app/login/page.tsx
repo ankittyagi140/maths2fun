@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useToast } from "@/context/Toastcontext";
+import { Loader } from '@/components/ui/Loader';
 
 export default function LoginPage() {
   const { login, googleLogin, loading,isAuth } = useAuth();
@@ -55,6 +56,10 @@ export default function LoginPage() {
   return (
     <>
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      {
+      loading ? <Loader/> : null
+      }
+      
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-900">Login</h2>
         {error && <p className="text-red-500 text-center">{error}</p>}

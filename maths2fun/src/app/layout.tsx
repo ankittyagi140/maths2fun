@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: "Maths2Fun - Interactive Math Learning Platform",
   description: "Master mathematics through interactive games and challenges. Learn algebra, calculus, and geometry in a fun, engaging way for all skill levels.",
   keywords: ["math learning", "interactive mathematics", "math games", "algebra practice", "calculus tutorial"],
@@ -71,7 +72,7 @@ export default function RootLayout({
           <AuthProvider>
           <ToastProvider>
           <Header/>
-          <main className="w-full h-full">{children}</main>
+          <main className="w-full min-h-screen">{children}</main>
           <Footer/>
           </ToastProvider>
           </AuthProvider>
