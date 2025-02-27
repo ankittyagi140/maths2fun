@@ -45,11 +45,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       (user) => {
         setUser(user);
         setLoading(false);
+        if(user){
+          setIsAuth(true)
+        }
       },
-      (error) => {
+      (error:unknown) => {
         setLoading(false);
-        console.log(error)
+      if (error instanceof Error) {
+       throw error;
+      } else {
+     throw new Error("An unexpected error occurred");
       }
+    }
+      
     );
     
     return () => unsubscribe();
@@ -59,6 +67,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
+      setLoading(false)
     setIsAuth(true)
     } catch (error:unknown) {
       setLoading(false);
@@ -74,7 +83,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
     try {
       setLoading(true);
        await createUserWithEmailAndPassword(auth, email, password);
+       setLoading(false)
     } catch (error:unknown) {
+      setLoading(false)
       if (error instanceof Error) {
         throw error;
        } else {
@@ -88,7 +99,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       setLoading(true);
       await signOut(auth);
       setIsAuth(false);
+      setLoading(false)
     } catch (error:unknown) {
+      setLoading(false)
       if (error instanceof Error) {
         throw error;
        } else {
@@ -103,7 +116,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
       const provider = new GoogleAuthProvider();
         await signInWithPopup(auth, provider);
         setIsAuth(true)
+        setLoading(false)
     } catch (error:unknown) {
+      setLoading(false)
       if (error instanceof Error) {
         throw error;
        } else {

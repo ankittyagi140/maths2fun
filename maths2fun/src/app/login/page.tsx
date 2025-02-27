@@ -13,7 +13,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const {addToast} = useToast();
-  const[error,setError] = useState("")
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,10 +22,8 @@ export default function LoginPage() {
       router.push('/');
     } catch (error:unknown) {
       if (error instanceof Error) {
-        setError(error.message);
         addToast(error.message, 'error');
       } else {
-        setError('An unexpected error occurred');
         addToast('An unexpected error occurred', 'error');
       }
     }
@@ -44,10 +41,8 @@ export default function LoginPage() {
     }
     catch(error:unknown){
       if (error instanceof Error) {
-        setError(error.message);
         addToast(error.message, 'error');
       } else {
-        setError('An unexpected error occurred');
         addToast('An unexpected error occurred', 'error');
       }
     }
@@ -62,7 +57,6 @@ export default function LoginPage() {
       
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-900">Login</h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-medium text-gray-700">Email</label>

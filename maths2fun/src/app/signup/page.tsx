@@ -11,7 +11,6 @@ export default function SignupPage() {
   const { signup, loading } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const router = useRouter();
   const {addToast} = useToast()
 
@@ -23,10 +22,8 @@ export default function SignupPage() {
       addToast("Signup Success",'success')
     } catch (error:unknown) {
       if (error instanceof Error) {
-        setError(error.message);
         addToast(error.message, 'error');
       } else {
-        setError('An unexpected error occurred');
         addToast('An unexpected error occurred', 'error');
       }
     }
@@ -37,7 +34,6 @@ export default function SignupPage() {
       {loading ? <Loader/> : null}
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-bold text-center text-gray-900">Create Account</h2>
-        {error && <p className="text-red-500 text-center">{error}</p>}
         
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div>

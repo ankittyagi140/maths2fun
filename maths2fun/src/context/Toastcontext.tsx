@@ -43,7 +43,7 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
         {children}
   
         {/* Fixed Toast Container */}
-        <div className="fixed top-4 right-4 space-y-2 z-[100]">
+        <div className="fixed top-16 right-0 space-y-2 z-[100]">
           {toasts.map((toast) => (
             <Toast
               key={toast.id}
@@ -78,22 +78,34 @@ interface ToastProps {
 }
 
 // Toast Component
-const Toast: React.FC<ToastProps> = ({  message, type, onClose }) => {
+const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
+  const backgroundColors = {
+    success: 'bg-green-100 border-green-300',
+    error: 'bg-red-100 border-red-300',
+    info: 'bg-blue-100 border-blue-300',
+  };
+
+  const iconColors = {
+    success: 'text-green-600',
+    error: 'text-red-600',
+    info: 'text-blue-600',
+  };
+
   const icons = {
-    success: <CheckCircle className="text-green-500 w-5 h-5" />,
-    error: <XCircle className="text-red-500 w-5 h-5" />,
-    info: <Info className="text-blue-500 w-5 h-5" />,
+    success: <CheckCircle className={`${iconColors[type]} w-5 h-5`} />,
+    error: <XCircle className={`${iconColors[type]} w-5 h-5`} />,
+    info: <Info className={`${iconColors[type]} w-5 h-5`} />,
   };
 
   return (
-    <div className="flex items-center w-80 p-4 bg-white shadow-md rounded-lg border border-gray-200 animate-slide-in">
+    <div className={`flex items-center w-80 p-4 shadow-md rounded-lg ${backgroundColors[type]}`}>
       <div className="mr-3">{icons[type]}</div>
-      <p className="flex-grow text-sm">{message}</p>
+      <p className="flex-grow text-sm text-gray-800">{message}</p>
       <button
         onClick={onClose}
-        className="ml-3 hover:bg-gray-100 rounded-full p-1"
+        className="ml-3 hover:bg-opacity-20 hover:bg-gray-500 rounded-full p-1"
       >
-        <X className="text-gray-500 hover:text-gray-700 w-4 h-4" />
+        <X className={`${iconColors[type]} hover:text-gray-700 w-4 h-4`} />
       </button>
     </div>
   );
