@@ -80,15 +80,15 @@ interface ToastProps {
 // Toast Component
 const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   const backgroundColors = {
-    success: 'bg-green-100 border-green-300',
-    error: 'bg-red-100 border-red-300',
-    info: 'bg-blue-100 border-blue-300',
+    success: 'bg-green-500 border-green-600',
+    error: 'bg-red-500 border-red-600',
+    info: 'bg-blue-500 border-blue-600',
   };
 
   const iconColors = {
-    success: 'text-green-600',
-    error: 'text-red-600',
-    info: 'text-blue-600',
+    success: 'text-white',
+    error: 'text-white',
+    info: 'text-white',
   };
 
   const icons = {
