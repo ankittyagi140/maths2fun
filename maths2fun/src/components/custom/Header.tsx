@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { SubHeadersLinks } from "@/utils/types";
@@ -11,7 +11,7 @@ import {
     X,
 } from 'lucide-react';
 import { useId } from "react";
-import { usePathname ,useRouter} from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/Toastcontext';
 
@@ -24,33 +24,33 @@ const Header: React.FC = ({ }) => {
     ];
 
     const kidsIcon = '👦';
-  const { logout, isAuth,user} = useAuth();
-  const {addToast} = useToast()
+    const { logout, isAuth, user } = useAuth();
+    const { addToast } = useToast()
 
 
     const pathName = usePathname();
     const router = useRouter();
 
-    const handleLogout=()=>{
-        try{
+    const handleLogout = () => {
+        try {
             logout();
-        router.push('/')
-        addToast("Logout Success","success")
-        }catch(error:unknown){
+            router.push('/')
+            addToast("Logout Success", "success")
+        } catch (error: unknown) {
             if (error instanceof Error) {
                 addToast(error.message, 'error');
-              } else {
+            } else {
                 addToast('An unexpected error occurred', 'error');
-              }
+            }
         }
     }
 
 
-    const handleProfileSettings=()=>{
+    const handleProfileSettings = () => {
         router.push('/profile')
     }
 
-    const handleLogin=()=>{
+    const handleLogin = () => {
         router.push('/login')
     }
 
@@ -69,7 +69,7 @@ const Header: React.FC = ({ }) => {
     }, []);
     return (
         <header className="bg-black sticky top-0 z-50">
-         
+
             <nav className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex md:hidden">
@@ -83,13 +83,13 @@ const Header: React.FC = ({ }) => {
 
                     <Link href='/' className="flex items-center">
                         <Image
-                 src="/maths2fun.png"
-                 alt="maths2fun Logo"
-                 width={80}
-                 height={80}
-                 priority
-                 className="w-16 h-12 md:w-18 md:h-14"
-                />
+                            src="/maths2fun.png"
+                            alt="maths2fun Logo"
+                            width={80}
+                            height={80}
+                            priority
+                            className="w-16 h-12 md:w-18 md:h-14"
+                        />
                         <span className={`text-3xl font-bold text-[#FFE66D] hidden sm:block font-['Comic_Sans_MS']`}>
                             Maths2Fun
                         </span>
