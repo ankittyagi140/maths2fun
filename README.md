@@ -6,7 +6,7 @@
 
 Maths2Fun is an engaging educational platform designed to make mathematics learning interactive and fun through puzzles, quizzes, and challenges. Suitable for learners of all ages and skill levels.
 
-![Maths2Fun Demo](https://maths2fun.com/) <!-- Add actual demo GIF link -->
+![Maths2Fun Demo](https://www.maths2fun.com/) <!-- Add actual demo GIF link -->
 
 ## Features
 
