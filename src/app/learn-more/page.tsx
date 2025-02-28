@@ -2,10 +2,20 @@
 
 import Cards from '@/components/ui/Cards';
 import { BookOpen, BrainCircuit, Trophy, Gamepad, Calculator } from 'lucide-react';
-import Link from 'next/link';
 import { v4 as uuidv4 } from "uuid"; // Import UUID for unique IDs
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 
 export default function LearnMorePage() {
+  const {isAuth} = useAuth();
+  const router = useRouter();
+
+  const handleStartNow=()=>{
+    if(isAuth){
+      router.push('/all-puzzles')
+    }else router.push('/signup')
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -13,13 +23,10 @@ export default function LearnMorePage() {
         <div className="max-w-6xl mx-auto text-center pt-20 pb-20">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#FFE66D] text-center font-['Comic_Sans_MS']">Transform Your Math Skills</h1>
           <p className="text-lg md:text-xl text-white mb-8 md:mb-12 font-['Nunito'] max-w-2xl mx-auto text-center">Master mathematics through interactive learning and gamified challenges</p>
-          <Link 
-            href="/signup" 
-            className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300"
-          >
+          <button onClick={handleStartNow}            className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
             Start Now
-          </Link>
-        </div>
+            </button>
+                    </div>
       </section>
 
       {/* Features Section */}
@@ -152,12 +159,9 @@ export default function LearnMorePage() {
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-2 text-[#FFE66D] font-['Comic_Sans_MS'] animate__animated animate__fadeIn">Ready to Master Mathematics?</h2>
           <p className="text-xl mb-8">Join thousands of students already improving their math skills</p>
           <div className="flex justify-center gap-4">
-            <Link 
-              href="/signup" 
-              className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300"
-            >
-              Get Started Now
-            </Link>
+          <button onClick={handleStartNow}            className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
+            Start Now
+            </button>
             {/* <Link 
               href="/demo" 
               className="border-2 border-white text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"

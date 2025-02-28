@@ -80,9 +80,9 @@ interface ToastProps {
 // Toast Component
 const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   const backgroundColors = {
-    success: 'bg-green-500 border-green-600',
-    error: 'bg-[#FF6B6B] border-red-600',
-    info: 'bg-blue-500 border-blue-600',
+    success: '#22bb33',
+    error: '#FF6B6B',
+    info: 'blue',
   };
 
   const iconColors = {
@@ -98,9 +98,9 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   };
 
   return (
-    <div className={`flex items-center w-80 p-4 shadow-md rounded-lg ${backgroundColors[type]}`}>
+    <div className={`flex items-center w-80 p-4 shadow-md rounded-lg`} style={{background: backgroundColors[type]}}>
       <div className="mr-3">{icons[type]}</div>
-      <p className="flex-grow text-sm text-gray-800">{message}</p>
+      <p className="flex-grow text-m text-white">{message}</p>
       <button
         onClick={onClose}
         className="ml-3 hover:bg-opacity-20 hover:bg-gray-500 rounded-full p-1"
