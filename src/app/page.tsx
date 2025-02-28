@@ -7,6 +7,7 @@ import { LandPlot, Pyramid, Calculator, Radius, Brain } from "lucide-react";
 import Faqs from "@/components/custom/Faqs";
 import { useRouter } from 'next/navigation';
 import { useAuth } from "@/context/AuthContext";
+import { Loader } from "@/components/ui/Loader";
 
 export default function Home() {
   const cardsElements: AppCards[] = [
@@ -101,7 +102,7 @@ export default function Home() {
     }    
   ];
   const router = useRouter();
-  const {isAuth} = useAuth()
+  const {isAuth,loading} = useAuth()
 
   const handleExploreAllPuzzles=()=>{
 router.push('/all-puzzles')
@@ -124,6 +125,8 @@ router.push('/all-puzzles')
 
   return (
     <>
+    {/*Loader*/}
+    {loading ? <Loader/> : null}
       {/* Hero Section */}
       <section className="bg-black w-full flex-col flex justify-center items-center py-8 px-4 md:p-20">
         <div className="pt-8 pb-8 md:pt-20 md:pb-20">
