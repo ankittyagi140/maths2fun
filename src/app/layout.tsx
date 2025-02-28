@@ -17,29 +17,69 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maths2fun.com'),
   title: "Maths2Fun - Interactive Math Learning Platform",
-  description: "Master mathematics through interactive games and challenges. Learn algebra, calculus, and geometry in a fun, engaging way for all skill levels.",
-  keywords: ["math learning", "interactive mathematics", "math games", "algebra practice", "calculus tutorial"],
+  description: "Boost your math skills with interactive games and fun challenges! Learn algebra, calculus, and geometry in an engaging and exciting way at Maths2Fun.",
+  keywords: [
+    "math learning",
+    "interactive mathematics",
+    "math games for kids",
+    "online algebra practice",
+    "calculus lessons",
+    "geometry puzzles",
+    "math challenges for students",
+    "fun math quizzes",
+    "online games for kids",
+    "maths is fun",
+    "maths learning platform",
+    "interactive math learning",
+    "math riddles",
+    "math puzzles",
+    "math games",
+  ],
   authors: [{ name: "Your Name", url: "https://www.maths2fun.com" }],
   openGraph: {
     title: "Maths2Fun - Interactive Math Learning Platform",
-    description: "Master mathematics through interactive games and challenges.",
+    description: "Boost your math skills with interactive games and fun challenges!",
     url: "https://www.maths2fun.com",
     siteName: "Maths2Fun",
     images: [
       {
-        url: "/maths2fun.png", // Replace with your actual OG image path
+        url: "/maths2fun.png",
         width: 1200,
         height: 630,
+        alt: "Maths2Fun - Interactive Math Learning Platform",
       },
     ],
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@maths2fun",
+    title: "Maths2Fun - Interactive Math Learning Platform",
+    description: "Boost your math skills with interactive games and fun challenges!",
+    images: ["/maths2fun.png"],
+  },
+  alternates: {
+    canonical: "https://www.maths2fun.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   verification: {
-    google: 'zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc',
-  }
+    google: "zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc",
+  },
 };
 
 export const viewport = {
@@ -50,36 +90,24 @@ export const viewport = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-  
-      <html lang="en">
-        <head>
-          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-          <link
-            rel="icon"
-            href="/maths2fun.png"
-            type="image/png"
-            sizes="512x512"
-          />
-          <meta name="google-site-verification" content="zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc" />
-        </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <ToastProvider>
+    <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/maths2fun.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/maths2fun.png" sizes="180x180" />
+        <meta name="google-site-verification" content="zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc" />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ToastProvider>
           <AuthProvider>
-          
-          <Header/>
-          <main className="w-full min-h-screen">{children}</main>
-          <Footer/>
-         
+            <Header />
+            <main className="w-full min-h-screen">{children}</main>
+            <Footer />
           </AuthProvider>
-          </ToastProvider>
-        </body>
-      </html>
-    
+        </ToastProvider>
+      </body>
+    </html>
   );
 }
