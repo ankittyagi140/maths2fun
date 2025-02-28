@@ -70,7 +70,7 @@ const Header: React.FC = ({ }) => {
         <header className="bg-black sticky top-0 z-50">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
-                    <div className="flex md:hidden">
+                    <div className="flex mdcustom:hidden">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="text-white hover:text-[#FFE66D] focus:outline-none"
@@ -91,7 +91,7 @@ const Header: React.FC = ({ }) => {
                             Maths2Fun
                         </span>
                     </Link>
-                    <div className="hidden md:flex">
+                    <div className="hidden mdcustom:flex">
                         <nav className='flex items-center justify-center gap-8'>
                             {subHeadersLinks.map(links => {
                                 const isActive = pathName === links.link;
@@ -103,7 +103,7 @@ const Header: React.FC = ({ }) => {
                             })}
                         </nav>
                     </div>
-                    <div className={`md:hidden absolute top-16 left-0 right-0 bg-black transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} ref={menuRef}>
+                    <div className={`mdcustom:hidden absolute top-16 left-0 right-0 bg-black transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'}`} ref={menuRef}>
                         <nav className="flex flex-col px-4 py-2">
                             {subHeadersLinks.map(links => {
                                 const isActive = pathName === links.link;

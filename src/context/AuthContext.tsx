@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from '@/firebase/firebase-config';
-import { useToast } from './Toastcontext';
 import { 
   User, 
   onAuthStateChanged, 
@@ -40,7 +39,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuth,setIsAuth] = useState<boolean>(false)
-  const {addToast} = useToast();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(
@@ -50,7 +48,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         setLoading(false);
         if(user){
           setIsAuth(true)
-          addToast('User Alreay Login', 'success')
         }
       },
       (error:unknown) => {

@@ -98,6 +98,7 @@ export default function RootLayout({
         <link rel="icon" href="/maths2fun.png" type="image/png" sizes="512x512" />
         <link rel="apple-touch-icon" href="/maths2fun.png" sizes="180x180" />
         <meta name="google-site-verification" content="zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ToastProvider>

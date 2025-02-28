@@ -1,5 +1,5 @@
 "use client";
-
+// import { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import UUID for unique IDs
 import Cards from "@/components/ui/Cards";
 import { AppCards } from "@/utils/types";
@@ -9,7 +9,17 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from "@/context/AuthContext";
 import { Loader } from "@/components/ui/Loader";
 
+
+// Define the BeforeInstallPromptEvent type
+// interface BeforeInstallPromptEvent extends Event {
+//   prompt: () => Promise<void>;
+//   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+// }
+
 export default function Home() {
+
+  // const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  // const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const cardsElements: AppCards[] = [
     { title: "Interactive Learning", description: "Engage with colorful puzzles and games that make math concepts fun and easy to understand", id: uuidv4(), Icon: LandPlot, bg: "#FFE66D", textColor: "black" },
     { title: "Progress Tracking", description: "Watch your skills grow with achievement badges and progress charts", id: uuidv4(), Icon: Brain, bg: "#4ECDC4", textColor: "white" },
@@ -123,10 +133,62 @@ router.push('/all-puzzles')
     else router.push('/signup');
   }
 
+//pwa 
+// useEffect(() => {
+//   const handleBeforeInstallPrompt = (event: Event) => {
+//     event.preventDefault();
+//     setDeferredPrompt(event as BeforeInstallPromptEvent);
+
+//     // Check if the user is on a mobile or tablet device
+//     if (window.matchMedia("(max-width: 1024px)").matches) {
+//       setShowInstallPrompt(true); // Show the install prompt for mobile/tablet
+//     }
+//   };
+//   window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+//   return () => {
+//     window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+//   };
+// }, []);
+
+// const handleInstallClick = () => {
+//   if (deferredPrompt) {
+//     deferredPrompt.prompt();
+//     deferredPrompt.userChoice.then((choiceResult) => {
+//       if (choiceResult.outcome === "accepted") {
+//         console.log("User accepted the install prompt");
+//       } else {
+//         console.log("User dismissed the install prompt");
+//       }
+//       setDeferredPrompt(null);
+//       setShowInstallPrompt(false); // Hide the prompt after action
+//     });
+//   }
+// };
+
+// const handleCancelClick = () => {
+//   setShowInstallPrompt(false); // Hide the prompt without installing
+// };
+
   return (
     <>
     {/*Loader*/}
     {loading ? <Loader/> : null}
+{/*PWA pop up*/}
+
+{/* {showInstallPrompt && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <h1 className="text-lg font-bold">Install Maths2Fun</h1>
+            <p>Would you like to install this app on your device?</p>
+            <div className="mt-4 flex justify-between">
+              <button onClick={handleInstallClick} className="bg-blue-500 text-white px-4 py-2 rounded">Install</button>
+              <button onClick={handleCancelClick} className="bg-gray-300 text-black px-4 py-2 rounded">Cancel</button>
+            </div>
+          </div>
+        </div>
+      )} */}
+     
+
       {/* Hero Section */}
       <section className="bg-black w-full flex-col flex justify-center items-center py-8 px-4 md:p-20">
         <div className="pt-8 pb-8 md:pt-20 md:pb-20">
