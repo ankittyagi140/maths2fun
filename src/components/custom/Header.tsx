@@ -80,7 +80,7 @@ const Header: React.FC = ({ }) => {
                     </div>
                     <Link href='/' className="flex items-center">
                         <Image
-                            src="/maths2fun.png"
+                            src="/maths2fun1.png"
                             alt="maths2fun Logo"
                             width={80}
                             height={80}

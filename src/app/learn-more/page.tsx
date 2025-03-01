@@ -23,7 +23,8 @@ export default function LearnMorePage() {
         <div className="max-w-6xl mx-auto text-center pt-20 pb-20">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#FFE66D] text-center font-['Comic_Sans_MS']">Transform Your Math Skills</h1>
           <p className="text-lg md:text-xl text-white mb-8 md:mb-12 font-['Nunito'] max-w-2xl mx-auto text-center">Master mathematics through interactive learning and gamified challenges</p>
-          <button onClick={handleStartNow}            className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
+          <button onClick={handleStartNow}            
+          className="bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-8 py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300">
             Start Now
             </button>
                     </div>

@@ -56,7 +56,7 @@ const Footer:React.FC = () => {
                 </a>
               </li>
               <li>
-                <Link href={"/"} className='text-white hover:text-[#FFE66D]'>Help & Support</Link>
+                <Link href={"/help"} className='text-white hover:text-[#FFE66D]'>Help & Support</Link>
               </li>
             </ul>
           </div>

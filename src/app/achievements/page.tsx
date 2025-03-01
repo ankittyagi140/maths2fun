@@ -2,8 +2,8 @@
 
 import { Medal, Star, Target, Crown, Zap, BookOpen, Lock } from 'lucide-react';
 import { useState } from 'react';
-import Link from 'next/link';
 import { useAuth } from '@/context/AuthContext';
+import {useRouter} from 'next/navigation'
 
 import type { LucideIcon } from 'lucide-react';
 interface Achievement {
@@ -80,15 +80,22 @@ interface Achievement {
     }
   ];
 
+ 
 export default function AchievementsPage() {
   const [filter, setFilter] = useState<string>('all');
-    
+    const router = useRouter();
+
+    const {isAuth}=useAuth();
   const filteredAchievements = filter === 'all'
   ? achievements
   : achievements.filter(a => a.category.toLowerCase() === filter.toLowerCase());
 
 const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCase()))];
-        const {isAuth}=useAuth();
+        
+  const handleBeginYourJourney = () => {
+    router.push('/signup');
+  }
+
   return (
     <div className="min-h-screen bg-white p-4 sm:p-6 lg:p-8">
       <main className="w-full max-w-7xl mx-auto">
@@ -191,13 +198,12 @@ const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCa
               <p className="text-[#6B7280] font-['Nunito']">
                 Login to start collecting achievements and unlock math superpowers!
               </p>
-              <Link
-                href="/login"
-                className="inline-block bg-black text-white px-8 py-3 rounded-lg
-                         hover:bg-[#ff8585] transition-colors font-bold shadow-md"
+              <button
+                onClick={handleBeginYourJourney}
+                className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 mt-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
               >
                 Begin Your Journey
-              </Link>
+              </button>
             </div>
           </div>
         )}
