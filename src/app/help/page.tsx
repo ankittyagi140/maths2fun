@@ -95,7 +95,7 @@ const HelpAndSupport = () => {
       <div className="bg-gray-50 p-6 rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">Still Need Help?</h2>
         <p className="mb-4">
-          If you couldn't find what you're looking for, our support team is here to help.
+          If you couldn`&lsquo;`t find what you`&lsquo;`re looking for, our support team is here to help.
           You can reach us through any of the following channels:
         </p>
         <ul className="list-disc list-inside space-y-2 mb-4">
