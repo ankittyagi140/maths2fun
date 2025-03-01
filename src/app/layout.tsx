@@ -36,6 +36,7 @@ export const metadata: Metadata = {
     "math riddles",
     "math puzzles",
     "math games",
+    "math fun riddles"
   ],
   authors: [{ name: "Your Name", url: "https://www.maths2fun.com" }],
   openGraph: {
