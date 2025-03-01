@@ -5,6 +5,7 @@ import Header from "@/components/custom/Header";
 import Footer from "@/components/custom/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 import { ToastProvider } from "@/context/Toastcontext";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -102,6 +103,23 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          {/* Google Analytics */}
+          <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-2W0LMES3Y7"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-2W0LMES3Y7');
+            `,
+          }}
+        />
         <ToastProvider>
           <AuthProvider>
             <Header />
