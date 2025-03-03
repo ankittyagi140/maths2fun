@@ -83,7 +83,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 mt-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
+              className="w-full flex justify-center items-center gap-2 bg-transparent border-2 px-6 py-3 md:px-8 md:py-4 border-[#4ECDC4] text-[#4ECDC4] shadow-sm text-m font-medium hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
             >
               {loading ? 'Logging in...' : 'Login'}
             </button>
@@ -92,7 +92,7 @@ export default function LoginPage() {
           <div className="mt-6">
             <button
               onClick={handleGoogleLogin}
-              className="w-full flex justify-center items-center gap-2 py-4 px-4 border border-gray-300 rounded-md shadow-sm text-m font-medium text-gray-700 bg-white hover:bg-gray-50"
+              className="w-full flex justify-center items-center gap-2  bg-[#FF6B6B] text-white px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 text-sm md:text-base"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" viewBox="0 0 24 24">
                 <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V9h2c1.1 0 2-.9 2-2V5.08c2.87.86 5 3.54 5 6.92 0 2.21-.98 4.19-2.53 5.39z" />
