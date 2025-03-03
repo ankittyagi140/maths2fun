@@ -101,10 +101,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/maths2fun.png" sizes="180x180" />
         <meta name="google-site-verification" content="zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc" />
         <link rel="manifest" href="/manifest.json" />
-        <Script 
-          strategy="afterInteractive" 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6406747327641731"
-          crossOrigin="anonymous"/>
+        <script
+          async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6406747327641731"
+          crossOrigin="anonymous"></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {/* Google Analytics */}
