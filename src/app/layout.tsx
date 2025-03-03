@@ -102,7 +102,7 @@ export default function RootLayout({
         <meta name="google-site-verification" content="zLtGgfAeZHTInXu9ONOVqwRsiz_AdOy1yZPcMNcKDqc" />
         <link rel="manifest" href="/manifest.json" />
         <Script 
-          async
+          strategy="afterInteractive" 
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6406747327641731"
           crossOrigin="anonymous"/>
       </head>
