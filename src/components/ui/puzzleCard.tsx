@@ -1,5 +1,5 @@
 'use client'
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FC, ReactNode } from "react";
 
 interface PuzzleCardProps {
@@ -14,13 +14,13 @@ interface PuzzleCardProps {
 }
 
 const PuzzleCard: FC<PuzzleCardProps> = ({ name, icon, description, path ,difficulty,bg,banner}) => {
-  // const router = useRouter(); // Fix variable naming (camelCase)
+  const router = useRouter(); // Fix variable naming (camelCase)
 
-  // const handlePuzzleCardClick = () => {
-  //   if (path) {
-  //     router.push(path); // Navigate to the puzzle page
-  //   }
-  // };
+  const handlePuzzleCardClick = () => {
+    if (path) {
+      router.push(path); // Navigate to the puzzle page
+    }
+  };
 
   return (
     <div
@@ -38,10 +38,10 @@ const PuzzleCard: FC<PuzzleCardProps> = ({ name, icon, description, path ,diffic
         {path && (
           <button
             className="bg-transparent border-2 w-full border-[#4ECDC4] text-[#4ECDC4] py-2 px-4 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn"
-            // onClick={(e) => {
-            //   e.stopPropagation(); // Prevent triggering card click
-            //   handlePuzzleCardClick();
-            // }}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering card click
+              handlePuzzleCardClick();
+            }}
           >
             Play Now
           </button>

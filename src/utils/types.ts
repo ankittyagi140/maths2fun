@@ -32,6 +32,7 @@ interface PuzzlesCards{
     icon:string,
     description: string,
     category: string,
+    subCategory?: string,
     path: string,
     slug: string,
     createdAt: Date
