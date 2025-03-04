@@ -20,6 +20,25 @@ interface Word {
   hint: string;
 }
 
+// Move mathWords outside the component
+const mathWords = {
+  easy: [
+    { text: 'ADD', hint: 'Combining numbers' },
+    { text: 'SUM', hint: 'Result of addition' },
+    { text: 'TEN', hint: 'Base of our number system' }
+  ],
+  medium: [
+    { text: 'ANGLE', hint: 'Space between intersecting lines' },
+    { text: 'PRIME', hint: 'Divisible only by 1 and itself' },
+    { text: 'LOGIC', hint: 'Reasoning framework' }
+  ],
+  hard: [
+    { text: 'FRACTION', hint: 'Represents part of a whole' },
+    { text: 'EQUATION', hint: 'Mathematical equality statement' },
+    { text: 'GEOMETRY', hint: 'Study of shapes and spaces' }
+  ]
+};
+
 const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) => {
   const [grid, setGrid] = useState<Cell[][]>([]);
   const [words, setWords] = useState<Word[]>([]);
@@ -29,24 +48,6 @@ const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) =>
   const [isComplete, setIsComplete] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [timeLeft, setTimeLeft] = useState<number>(0);
-
-  const mathWords = {
-    easy: [
-      { text: 'ADD', hint: 'Combining numbers' },
-      { text: 'SUM', hint: 'Result of addition' },
-      { text: 'TEN', hint: 'Base of our number system' }
-    ],
-    medium: [
-      { text: 'ANGLE', hint: 'Space between intersecting lines' },
-      { text: 'PRIME', hint: 'Divisible only by 1 and itself' },
-      { text: 'LOGIC', hint: 'Reasoning framework' }
-    ],
-    hard: [
-      { text: 'FRACTION', hint: 'Represents part of a whole' },
-      { text: 'EQUATION', hint: 'Mathematical equality statement' },
-      { text: 'GEOMETRY', hint: 'Study of shapes and spaces' }
-    ]
-  };
 
   const generateGrid = useCallback(() => {
     let size: number;
@@ -65,6 +66,9 @@ const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) =>
         size = 9;
         wordList = mathWords.hard.map(w => ({ ...w, found: false }));
         break;
+      default:
+        size = 5;
+        wordList = mathWords.easy.map(w => ({ ...w, found: false }));
     }
 
     const newGrid: Cell[][] = Array(size).fill(null).map(() => 
@@ -80,8 +84,11 @@ const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) =>
     wordList.forEach((word, wordIndex) => {
       const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical';
       let placed = false;
+      let attempts = 0;
+      const maxAttempts = 100;
       
-      while (!placed) {
+      while (!placed && attempts < maxAttempts) {
+        attempts++;
         const startX = Math.floor(Math.random() * (size - (direction === 'horizontal' ? word.text.length : 0)));
         const startY = Math.floor(Math.random() * (size - (direction === 'vertical' ? word.text.length : 0)));
         
@@ -126,11 +133,12 @@ const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) =>
     setTimeLeft(difficulty === 'easy' ? 120 : difficulty === 'medium' ? 180 : 240);
     setIsComplete(false);
     setIsFailed(false);
-  }, [difficulty, mathWords]);
+    setSelectedCells([]);
+  }, [difficulty]); // Remove mathWords from dependencies
 
   useEffect(() => {
     generateGrid();
-  }, [difficulty, generateGrid]);
+  }, [generateGrid]);
 
   useEffect(() => {
     if (timeLeft > 0 && !isComplete) {
