@@ -126,7 +126,7 @@ const MathWordSearch: React.FC<{ difficulty: Difficulty }> = ({ difficulty }) =>
     setTimeLeft(difficulty === 'easy' ? 120 : difficulty === 'medium' ? 180 : 240);
     setIsComplete(false);
     setIsFailed(false);
-  }, [difficulty]);
+  }, [difficulty, mathWords]);
 
   useEffect(() => {
     generateGrid();
