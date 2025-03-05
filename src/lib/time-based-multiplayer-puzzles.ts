@@ -1,4 +1,5 @@
-export const TimeBasedMultiplayerPuzzles = [{
+export const TimeBasedMultiplayerPuzzles = [
+    {
     id: 'puzzle-20',
     name: 'Math Speed Challenge',
     icon: '⏳',
