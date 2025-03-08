@@ -1,21 +1,36 @@
 "use client";
 import { v4 as uuidv4 } from "uuid"; // Import UUID for unique IDs
-import Cards from "@/components/ui/Cards";
-import { AppCards } from "@/utils/types";
-import { LandPlot, Pyramid, Calculator, Radius, Brain } from "lucide-react";
-import Faqs from "@/components/custom/Faqs";
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useAuth } from "@/context/AuthContext";
 import { Loader } from "@/components/ui/Loader";
+import { useEffect } from 'react';
+import { reportWebVitals } from '@/lib/web-vitals';
+import { AppCards } from "@/utils/types";
+import { 
+  Brain, BrainCircuit, Calculator, CalculatorIcon, 
+  LandPlot, MapPinCheckInside, Circle, Pyramid 
+} from "lucide-react";
 
+const Cards = dynamic(() => import('@/components/ui/Cards'), {
+  loading: () => <div className="h-64 bg-gray-100 rounded-lg animate-pulse" />,
+  ssr: false
+});
+
+const Faqs = dynamic(() => import('@/components/custom/Faqs'), {
+  loading: () => <div className="h-64 bg-gray-100 rounded-lg animate-pulse" />
+});
 
 export default function Home() {
+  useEffect(() => {
+    reportWebVitals(console.log);
+  }, []);
 
   const cardsElements: AppCards[] = [
     { title: "Interactive Learning", description: "Engage with colorful puzzles and games that make math concepts fun and easy to understand", id: uuidv4(), Icon: LandPlot, bg: "#FFE66D", textColor: "black" },
     { title: "Progress Tracking", description: "Watch your skills grow with achievement badges and progress charts", id: uuidv4(), Icon: Brain, bg: "#4ECDC4", textColor: "white" },
     { title: "Adaptive Difficulty", description: "Puzzles that adjust to your child's skill level for optimal learning", id: uuidv4(), Icon: Calculator, bg: "#FF6B6B", textColor: "white" },
-    { title: "Parent Dashboard", description: "Monitor your child's progress and receive detailed learning reports", id: uuidv4(), Icon: Radius, bg: "#FFE66D", textColor: "black" },
+    { title: "Parent Dashboard", description: "Monitor your child's progress and receive detailed learning reports", id: uuidv4(), Icon: Circle, bg: "#FFE66D", textColor: "black" },
     { title: "Rewards System", description: "Earn points, unlock new puzzles, and collect virtual rewards", id: uuidv4(), Icon: Pyramid, bg: "#4ECDC4", textColor: "white" },
   ];
 
@@ -33,7 +48,7 @@ export default function Home() {
       title: "Geometry & Spatial Puzzles", 
       description: "Improve spatial awareness and geometric reasoning with puzzles like Tangrams and 3D shape challenges. Master reflections, angles, and object arrangements.", 
       id: uuidv4(), 
-      Icon: LandPlot, 
+      Icon: Calculator, 
       bg: "#4ECDC4", 
       textColor: "black", 
       path: "/all-puzzles/geometry-spatial-puzzles" 
@@ -42,7 +57,7 @@ export default function Home() {
       title: "Arithmetic & Calculation Puzzles", 
       description: "Sharpen mental math with fast-paced addition, subtraction, multiplication, and division challenges. Solve equations, fractions, and multiplication towers for a math workout.", 
       id: uuidv4(), 
-      Icon: LandPlot, 
+      Icon: Brain, 
       bg: "#FF6B6B", 
       textColor: "black", 
       path: "/all-puzzles/arithmetic-calculation-puzzles" 
@@ -51,7 +66,7 @@ export default function Home() {
       title: "Time-Based & Multiplayer Puzzles", 
       description: "Race against time or challenge others in math duels, speed rounds, and strategy-driven escape room puzzles. Enhance quick thinking and problem-solving skills.", 
       id: uuidv4(), 
-      Icon: LandPlot, 
+      Icon: MapPinCheckInside, 
       bg: "#FFE66D", 
       textColor: "black", 
       path: "/all-puzzles/time-based-multiplayer-puzzles" 
@@ -69,7 +84,7 @@ export default function Home() {
       title: "Measurement & Estimation Puzzles", 
       description: "Apply real-world math by estimating weight, volume, time, and distance. Convert units, read clock faces, and solve practical measurement challenges.", 
       id: uuidv4(), 
-      Icon: LandPlot, 
+      Icon: CalculatorIcon, 
       bg: "#FF6B6B", 
       textColor: "black", 
       path: "/all-puzzles/measurement-estimation-puzzles" 
@@ -96,7 +111,7 @@ export default function Home() {
       title: "Maths Riddles", 
       description: "Solve tricky math riddles, brain teasers, and logic-based challenges. Test your reasoning, problem-solving, and number skills with engaging word problems.", 
       id: uuidv4(), 
-      Icon: LandPlot, 
+      Icon: BrainCircuit, 
       bg: "#FFE66D", 
       textColor: "black", 
       path: "/all-puzzles/maths-riddles" 
@@ -166,7 +181,7 @@ export default function Home() {
      
 
       {/* Hero Section */}
-      <section className="bg-black w-full flex-col flex justify-center items-center py-8 px-4 md:p-20">
+      <section className="bg-black w-full flex-col flex justify-center items-center py-8 px-4 md:p-20 min-h-[80vh]">
         <div className="pt-8 pb-8 md:pt-20 md:pb-20">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#FFE66D] text-center font-['Comic_Sans_MS']">
             Make Maths Fun with Puzzles!
@@ -191,7 +206,7 @@ export default function Home() {
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
           Explore Our Puzzle Categories
         </h2>
-        <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[800px]">
           {cardsForCategories.map((card) => (
             <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} />
           ))}
