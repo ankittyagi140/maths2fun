@@ -287,7 +287,7 @@ const MagicSquare: React.FC<MagicSquareProps> = ({ difficulty }) => {
             >
               <Trophy className="w-16 h-16 text-yellow-500 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-green-600 mb-2">Congratulations!</h3>
-              <p className="text-gray-600 mb-6">You`&apos;`ve solved the magic square!</p>
+              <p className="text-gray-600 mb-6">You&apos;ve solved the magic square!</p>
               <button
                 onClick={() => {
                   setIsComplete(false);

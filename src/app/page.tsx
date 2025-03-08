@@ -11,10 +11,14 @@ import {
   Brain, BrainCircuit, Calculator, CalculatorIcon, 
   LandPlot, MapPinCheckInside, Circle, Pyramid 
 } from "lucide-react";
+import Image from 'next/image';
+import HeroImage from '@/public/hero-image.jpg';
 
 const Cards = dynamic(() => import('@/components/ui/Cards'), {
-  loading: () => <div className="h-64 bg-gray-100 rounded-lg animate-pulse" />,
-  ssr: false
+  loading: () => (
+    <div className="h-64 bg-gray-100 rounded-lg animate-pulse" 
+         style={{minHeight: '300px'}} />
+  )
 });
 
 const Faqs = dynamic(() => import('@/components/custom/Faqs'), {
@@ -22,10 +26,7 @@ const Faqs = dynamic(() => import('@/components/custom/Faqs'), {
 });
 
 export default function Home() {
-  useEffect(() => {
-    reportWebVitals(console.log);
-  }, []);
-
+ 
   const cardsElements: AppCards[] = [
     { title: "Interactive Learning", description: "Engage with colorful puzzles and games that make math concepts fun and easy to understand", id: uuidv4(), Icon: LandPlot, bg: "#FFE66D", textColor: "black" },
     { title: "Progress Tracking", description: "Watch your skills grow with achievement badges and progress charts", id: uuidv4(), Icon: Brain, bg: "#4ECDC4", textColor: "white" },
@@ -197,6 +198,15 @@ export default function Home() {
               Learn More
             </button>
           </div>
+          <Image
+            src={HeroImage}
+            alt="Math Puzzles"
+            priority
+            quality={75}
+            sizes="100vw"
+            fill
+            className="object-cover"
+          />
         </div>
       </section>
 
@@ -208,7 +218,11 @@ export default function Home() {
         </h2>
         <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 min-h-[800px]">
           {cardsForCategories.map((card) => (
-            <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} />
+            <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} style={{
+              width: '100%',
+              height: '300px',
+              aspectRatio: '1/1'
+            }} />
           ))}
         </div>
         {/*<div className="text-center mt-8 md:mt-12 w-full">
@@ -303,7 +317,11 @@ export default function Home() {
           </h2>
           <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
             {cardsElements.map((card) => (
-              <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} textColor={card.textColor} />
+              <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} textColor={card.textColor} style={{
+                width: '100%',
+                height: '300px',
+                aspectRatio: '1/1'
+              }} />
             ))}
           </div>
         </div>
