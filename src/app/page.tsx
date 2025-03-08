@@ -1,5 +1,4 @@
 "use client";
-// import { useEffect,useState } from "react";
 import { v4 as uuidv4 } from "uuid"; // Import UUID for unique IDs
 import Cards from "@/components/ui/Cards";
 import { AppCards } from "@/utils/types";
@@ -10,16 +9,8 @@ import { useAuth } from "@/context/AuthContext";
 import { Loader } from "@/components/ui/Loader";
 
 
-// Define the BeforeInstallPromptEvent type
-// interface BeforeInstallPromptEvent extends Event {
-//   prompt: () => Promise<void>;
-//   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
-// }
-
 export default function Home() {
 
-  // const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  // const [showInstallPrompt, setShowInstallPrompt] = useState(false);
   const cardsElements: AppCards[] = [
     { title: "Interactive Learning", description: "Engage with colorful puzzles and games that make math concepts fun and easy to understand", id: uuidv4(), Icon: LandPlot, bg: "#FFE66D", textColor: "black" },
     { title: "Progress Tracking", description: "Watch your skills grow with achievement badges and progress charts", id: uuidv4(), Icon: Brain, bg: "#4ECDC4", textColor: "white" },
@@ -44,7 +35,7 @@ export default function Home() {
       id: uuidv4(), 
       Icon: LandPlot, 
       bg: "#4ECDC4", 
-      textColor: "white", 
+      textColor: "black", 
       path: "/all-puzzles/geometry-spatial-puzzles" 
     },
     { 
@@ -53,7 +44,7 @@ export default function Home() {
       id: uuidv4(), 
       Icon: LandPlot, 
       bg: "#FF6B6B", 
-      textColor: "white", 
+      textColor: "black", 
       path: "/all-puzzles/arithmetic-calculation-puzzles" 
     },
     { 
@@ -71,7 +62,7 @@ export default function Home() {
       id: uuidv4(), 
       Icon: LandPlot, 
       bg: "#4ECDC4", 
-      textColor: "white", 
+      textColor: "black", 
       path: "/all-puzzles/pattern-recognition-matching-puzzles" 
     },
     { 
@@ -80,7 +71,7 @@ export default function Home() {
       id: uuidv4(), 
       Icon: LandPlot, 
       bg: "#FF6B6B", 
-      textColor: "white", 
+      textColor: "black", 
       path: "/all-puzzles/measurement-estimation-puzzles" 
     },
     { 
@@ -98,7 +89,7 @@ export default function Home() {
       id: uuidv4(), 
       Icon: LandPlot, 
       bg: "#4ECDC4", 
-      textColor: "white", 
+      textColor: "black", 
       path: "/all-puzzles/algebra-advance-maths-puzzles" 
     },
     { 
@@ -114,9 +105,9 @@ export default function Home() {
   const router = useRouter();
   const {isAuth,loading} = useAuth()
 
-  const handleExploreAllPuzzles=()=>{
-router.push('/all-puzzles')
-  }
+//   const handleExploreAllPuzzles=()=>{
+// router.push('/all-puzzles')
+//   }
 
   const handleLearnMoreClick=()=>{
     router.push('/learn-more')
@@ -133,7 +124,6 @@ router.push('/all-puzzles')
     else router.push('/signup');
   }
 
-//pwa 
 // useEffect(() => {
 //   const handleBeforeInstallPrompt = (event: Event) => {
 //     event.preventDefault();
@@ -173,20 +163,6 @@ router.push('/all-puzzles')
     <>
     {/*Loader*/}
     {loading ? <Loader/> : null}
-{/*PWA pop up*/}
-
-{/* {showInstallPrompt && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded shadow-lg">
-            <h1 className="text-lg font-bold">Install Maths2Fun</h1>
-            <p>Would you like to install this app on your device?</p>
-            <div className="mt-4 flex justify-between">
-              <button onClick={handleInstallClick} className="bg-blue-500 text-white px-4 py-2 rounded">Install</button>
-              <button onClick={handleCancelClick} className="bg-gray-300 text-black px-4 py-2 rounded">Cancel</button>
-            </div>
-          </div>
-        </div>
-      )} */}
      
 
       {/* Hero Section */}
@@ -195,11 +171,11 @@ router.push('/all-puzzles')
           <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-[#FFE66D] text-center font-['Comic_Sans_MS']">
             Make Maths Fun with Puzzles!
           </h1>
-          <h5 className="text-lg md:text-xl text-white mb-8 md:mb-12 font-['Nunito'] max-w-2xl mx-auto text-center">
+          <p className="text-lg md:text-xl text-white mb-8 md:mb-12 font-['Nunito'] max-w-2xl mx-auto text-center">
             Engage your kids with interactive Maths puzzles that make learning an adventure
-          </h5>
+          </p>
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
-            <button onClick={handleStartPlayingClick} className="w-full md:w-auto bg-[#FF6B6B] text-white px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 text-sm md:text-base">
+            <button onClick={handleStartPlayingClick} className="w-full md:w-auto bg-[#FF6B6B] text-greys px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#ff8585] transition-colors duration-300 text-sm md:text-base">
               Start Playing
             </button>
             <button onClick={handleLearnMoreClick} className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base">
@@ -209,19 +185,26 @@ router.push('/all-puzzles')
         </div>
       </section>
 
-      {/* Why Kids Love Our Maths Puzzles */}
-      <section className="bg-white py-12 px-4 md:p-20">
-        <div className="pt-8 pb-8 md:pt-20 md:pb-20 max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
-            Why Kids Love Our Maths Puzzles
-          </h2>
-          <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
-            {cardsElements.map((card) => (
-              <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} textColor={card.textColor} />
-            ))}
-          </div>
+       {/* Puzzle Categories */}
+       <section className="bg-white py-12 px-4 md:p-20">
+        <div className="max-w-7xl mx-auto">
+        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
+          Explore Our Puzzle Categories
+        </h2>
+        <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {cardsForCategories.map((card) => (
+            <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} />
+          ))}
+        </div>
+        {/*<div className="text-center mt-8 md:mt-12 w-full">
+          <button onClick={handleExploreAllPuzzles} className="bg-transparent border-2 w-full border-[#4ECDC4] text-[#4ECDC4] py-4 px-8 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn"
+          >
+            Explore All Puzzles
+          </button>
+        </div>*/}
         </div>
       </section>
+
 
       {/*** How Our Math Puzzles Work ***/}
       <section className="bg-neutral-900 py-12 px-4 md:py-20">
@@ -297,23 +280,17 @@ router.push('/all-puzzles')
         </div>
       </section>
 
-      {/* Puzzle Categories */}
-      <section className="bg-white py-12 px-4 md:p-20">
-        <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
-          Explore Our Puzzle Categories
-        </h2>
-        <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-          {cardsForCategories.map((card) => (
-            <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} categories={true} textColor={card.textColor} path={card.path} />
-          ))}
-        </div>
-        <div className="text-center mt-8 md:mt-12 w-full">
-          <button onClick={handleExploreAllPuzzles} className="bg-transparent border-2 w-full border-[#4ECDC4] text-[#4ECDC4] py-4 px-8 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn"
-          >
-            Explore All Puzzles
-          </button>
-        </div>
+       {/* Why Kids Love Our Maths Puzzles */}
+       <section className="bg-white py-12 px-4 md:p-20">
+        <div className="pt-8 pb-8 md:pt-20 md:pb-20 max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-16 text-black font-['Comic_Sans_MS']">
+            Why Kids Love Our Maths Puzzles
+          </h2>
+          <div className="grid gap-4 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+            {cardsElements.map((card) => (
+              <Cards key={card.id} id={card.id} title={card.title} description={card.description} Icon={card.Icon} bg={card.bg} textColor={card.textColor} />
+            ))}
+          </div>
         </div>
       </section>
 

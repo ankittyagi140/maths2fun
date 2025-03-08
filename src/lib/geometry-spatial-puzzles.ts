@@ -6,7 +6,7 @@ export const GeometrySpatialPuzzles = [
         description: 'Arrange shapes to create magical figures',
         category: 'Geometry Spatial',
         subCategory: 'Geometry',
-        path: '/puzzles/tangram',
+        path: '/all-puzzles/geometry-spatial-puzzles/tangramChallenge',
         slug: 'tangram',
         difficulty: 'Medium',
         createdAt: new Date('2025-01-24'),

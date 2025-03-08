@@ -22,12 +22,12 @@ const AlgebraAdvanceMaths:React.FC=()=>{
     }
           </div>
     
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <button 
             className="bg-transparent border-2 w-full border-[#4ECDC4] text-[#4ECDC4] py-2 px-4 bordred-full font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 animate__animated animate__bounceIn">
             View All Puzzles
             </button>
-          </div>
+          </div> */}
         </div>
     
       </section>)

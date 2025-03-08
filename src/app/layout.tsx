@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://www.maths2fun.com'),
-  title: "Maths2Fun - Interactive Math Learning Platform",
-  description: "Boost your math skills with interactive games and fun challenges! Learn algebra, calculus, and geometry in an engaging and exciting way at Maths2Fun.",
+  title: "Maths2Fun - Fun Math Puzzles, Riddles & Interactive Learning",
+  description: "Solve fun math puzzles, riddles, and challenges! Boost your math skills with interactive games and quizzes. Perfect for kids and students learning algebra, calculus, and geometry",
   keywords: [
     "math learning",
     "interactive mathematics",
@@ -37,12 +37,16 @@ export const metadata: Metadata = {
     "math riddles",
     "math puzzles",
     "math games",
-    "math fun riddles"
+    "math fun riddles",
+    "math puzzle games",
+    "math brain teasers",
+    "math logic puzzles",
+    "math problem-solving games"
   ],
-  authors: [{ name: "Your Name", url: "https://www.maths2fun.com" }],
+  authors: [{ name: "Ankit Tyagi", url: "https://www.maths2fun.com" }],
   openGraph: {
-    title: "Maths2Fun - Interactive Math Learning Platform",
-    description: "Boost your math skills with interactive games and fun challenges!",
+    title: "Maths2Fun - Fun Math Puzzles, Riddles & Interactive Learning",
+    description: "Solve fun math puzzles, riddles, and challenges! Boost your math skills with interactive games and quizzes. Perfect for kids and students learning algebra, calculus, and geometry",
     url: "https://www.maths2fun.com",
     siteName: "Maths2Fun",
     images: [
@@ -50,7 +54,7 @@ export const metadata: Metadata = {
         url: "/maths2fun.png",
         width: 1200,
         height: 630,
-        alt: "Maths2Fun - Interactive Math Learning Platform",
+        alt: "Maths2Fun - Fun Math Puzzles, Riddles & Interactive Learning",
       },
     ],
     locale: "en_US",
@@ -59,8 +63,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     site: "@maths2fun",
-    title: "Maths2Fun - Interactive Math Learning Platform",
-    description: "Boost your math skills with interactive games and fun challenges!",
+    title: "Maths2Fun - Fun Math Puzzles, Riddles & Interactive Learning",
+    description: "Solve fun math puzzles, riddles, and challenges! Boost your math skills with interactive games and quizzes. Perfect for kids and students learning algebra, calculus, and geometry",
     images: ["/maths2fun.png"],
   },
   alternates: {

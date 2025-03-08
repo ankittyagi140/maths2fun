@@ -79,7 +79,7 @@ export default function SettingsPage() {
           </p>
           <Link
             href="/login"
-            className="w-full flex justify-center py-4 px-4 border border-transparent rounded-md shadow-sm text-m font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none"
+            className="w-full flex justify-center items-center gap-2 bg-transparent border-2 px-6 py-3 md:px-8 md:py-4 border-[#4ECDC4] text-[#4ECDC4] shadow-sm text-m font-medium hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
           >
             Login to Continue
           </Link>

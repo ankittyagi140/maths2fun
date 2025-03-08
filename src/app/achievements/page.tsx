@@ -200,7 +200,7 @@ const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCa
               </p>
               <button
                 onClick={handleBeginYourJourney}
-                className="w-full md:w-auto bg-transparent border-2 border-[#4ECDC4] text-[#4ECDC4] px-6 py-3 md:px-8 md:py-4 mt-4 font-bold hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
+                className="w-full flex justify-center items-center gap-2 bg-transparent border-2 px-6 py-3 md:px-8 md:py-4 border-[#4ECDC4] text-[#4ECDC4] shadow-sm text-m font-medium hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
               >
                 Begin Your Journey
               </button>

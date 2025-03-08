@@ -22,11 +22,11 @@ const ArithmeticCalculations:React.FC=()=>{
     }
           </div>
     
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <button className="bg-neutral-700 hover:bg-neutral-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-300 animate__animated animate__fadeInUp">
               View All Puzzles
             </button>
-          </div>
+          </div> */}
         </div>
     
       </section>)
