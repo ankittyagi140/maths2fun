@@ -4,15 +4,12 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useAuth } from "@/context/AuthContext";
 import { Loader } from "@/components/ui/Loader";
-import { useEffect } from 'react';
-import { reportWebVitals } from '@/lib/web-vitals';
 import { AppCards } from "@/utils/types";
 import { 
   Brain, BrainCircuit, Calculator, CalculatorIcon, 
   LandPlot, MapPinCheckInside, Circle, Pyramid 
 } from "lucide-react";
-import Image from 'next/image';
-import HeroImage from '@/public/hero-image.jpg';
+
 
 const Cards = dynamic(() => import('@/components/ui/Cards'), {
   loading: () => (
@@ -140,40 +137,7 @@ export default function Home() {
     else router.push('/signup');
   }
 
-// useEffect(() => {
-//   const handleBeforeInstallPrompt = (event: Event) => {
-//     event.preventDefault();
-//     setDeferredPrompt(event as BeforeInstallPromptEvent);
 
-//     // Check if the user is on a mobile or tablet device
-//     if (window.matchMedia("(max-width: 1024px)").matches) {
-//       setShowInstallPrompt(true); // Show the install prompt for mobile/tablet
-//     }
-//   };
-//   window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-//   return () => {
-//     window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-//   };
-// }, []);
-
-// const handleInstallClick = () => {
-//   if (deferredPrompt) {
-//     deferredPrompt.prompt();
-//     deferredPrompt.userChoice.then((choiceResult) => {
-//       if (choiceResult.outcome === "accepted") {
-//         console.log("User accepted the install prompt");
-//       } else {
-//         console.log("User dismissed the install prompt");
-//       }
-//       setDeferredPrompt(null);
-//       setShowInstallPrompt(false); // Hide the prompt after action
-//     });
-//   }
-// };
-
-// const handleCancelClick = () => {
-//   setShowInstallPrompt(false); // Hide the prompt without installing
-// };
 
   return (
     <>
@@ -198,15 +162,6 @@ export default function Home() {
               Learn More
             </button>
           </div>
-          <Image
-            src={HeroImage}
-            alt="Math Puzzles"
-            priority
-            quality={75}
-            sizes="100vw"
-            fill
-            className="object-cover"
-          />
         </div>
       </section>
 

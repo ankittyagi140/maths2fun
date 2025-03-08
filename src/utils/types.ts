@@ -15,7 +15,7 @@ interface SubHeadersLinks{
     icon:ComponentType<{ size?: number; color?: string }>
 }
 
-interface AppCards{
+interface AppCards {
     title:string,
     description:string,
     Icon:ComponentType<{ size?: number; color?: string }>,
@@ -24,6 +24,7 @@ interface AppCards{
     bg?:string,
     textColor:string
     path?:string
+    style?: React.CSSProperties;
 }
 
 interface PuzzlesCards{
