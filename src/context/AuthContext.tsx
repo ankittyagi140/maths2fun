@@ -9,7 +9,8 @@ import {
   createUserWithEmailAndPassword, 
   signOut,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithPopup,
+  Auth
 } from 'firebase/auth';
 import React from 'react';
 
@@ -23,6 +24,12 @@ export type AuthContextType = {
   isAuth:boolean
 };
 
+// Helper function to check if Firebase auth is properly configured
+const isFirebaseAuthConfigured = (authInstance: any): authInstance is Auth => {
+  return authInstance && 
+         typeof authInstance.onAuthStateChanged === 'function' &&
+         typeof authInstance.signInWithEmailAndPassword === 'function';
+};
 
 // Create the context with a default value
 const AuthContext = createContext<AuthContextType>({
@@ -41,6 +48,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
   const [isAuth,setIsAuth] = useState<boolean>(false)
 
   useEffect(() => {
+    // Check if auth is properly initialized
+    if (!isFirebaseAuthConfigured(auth)) {
+      console.warn('⚠️ Firebase auth not properly configured. Running in demo mode.');
+      setLoading(false);
+      return;
+    }
+
     const unsubscribe = onAuthStateChanged(
       auth, 
       (user) => {
@@ -51,13 +65,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
         }
       },
       (error:unknown) => {
+        console.error('Auth state change error:', error);
         setLoading(false);
-      if (error instanceof Error) {
-       throw error;
-      } else {
-     throw new Error("An unexpected error occurred");
+        // Don't throw error, just log it
       }
-    }
     );
     
     return () => unsubscribe();
@@ -65,10 +76,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   const login = async (email: string, password: string) => {
     try {
+      if (!isFirebaseAuthConfigured(auth)) {
+        throw new Error('Firebase authentication is not configured. Please check your environment variables.');
+      }
+      
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       setLoading(false)
-    setIsAuth(true)
+      setIsAuth(true)
     } catch (error:unknown) {
       setLoading(false);
       if (error instanceof Error) {
@@ -81,6 +96,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   const signup = async (email: string, password: string) => {
     try {
+      if (!isFirebaseAuthConfigured(auth)) {
+        throw new Error('Firebase authentication is not configured. Please check your environment variables.');
+      }
+      
       setLoading(true);
        await createUserWithEmailAndPassword(auth, email, password);
        setLoading(false)
@@ -96,6 +115,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   const logout = async () => {
     try {
+      if (!isFirebaseAuthConfigured(auth)) {
+        throw new Error('Firebase authentication is not configured. Please check your environment variables.');
+      }
+      
       setLoading(true);
       await signOut(auth);
       setIsAuth(false);
@@ -112,6 +135,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }): React
 
   const googleLogin = async () => {
     try {
+      if (!isFirebaseAuthConfigured(auth)) {
+        throw new Error('Firebase authentication is not configured. Please check your environment variables.');
+      }
+      
       setLoading(true);
       const provider = new GoogleAuthProvider();
         await signInWithPopup(auth, provider);

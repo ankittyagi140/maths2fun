@@ -97,27 +97,30 @@ const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCa
   }
 
   return (
-    <div className="min-h-screen bg-white p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-yellow-50 p-4 sm:p-6 lg:p-8">
       <main className="w-full max-w-7xl mx-auto">
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-bold text-[#2D3142] mb-2 font-['Comic_Sans_MS']">
-            🏆 Achievement Hall
+        <div className="mb-10 text-center">
+          <div className="mb-4 flex justify-center">
+            <span className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full shadow-lg text-5xl">🏅</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-bold text-[#2D3142] mb-2 font-['Comic_Sans_MS']">
+            Achievement Hall
           </h1>
-          <p className="text-[#4A4A4A] font-['Nunito']">Unlock your math mastery milestones</p>
+          <p className="text-xl text-[#4A4A4A] font-['Nunito']">Unlock your math mastery milestones</p>
         </div>
 
         {isAuth ? (
           <>
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2 mb-8 justify-center">
+            <div className="flex flex-wrap gap-3 mb-10 justify-center">
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setFilter(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                  className={`px-5 py-2 rounded-full text-base font-bold transition-all border-2 shadow-sm ${
                     filter === category
-                      ? 'bg-[#FFE66D] text-black shadow-md'
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      ? 'bg-gradient-to-r from-yellow-200 to-pink-200 text-black border-yellow-400 shadow-md scale-105'
+                      : 'bg-white text-gray-600 border-gray-200 hover:bg-yellow-50 hover:border-yellow-300'
                   }`}
                 >
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -126,59 +129,67 @@ const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCa
             </div>
 
             {/* Achievements Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {filteredAchievements.map((achievement) => {
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredAchievements.map((achievement, idx) => {
                 const Icon = achievement.icon;
                 const progressPercentage = (achievement.progress / achievement.total) * 100;
                 const isComplete = achievement.progress >= achievement.total;
-
+                const pastelGradients = [
+                  'from-pink-100 via-yellow-50 to-yellow-100',
+                  'from-blue-100 via-purple-50 to-indigo-100',
+                  'from-green-100 via-teal-50 to-cyan-100',
+                  'from-yellow-100 via-pink-50 to-red-100',
+                  'from-purple-100 via-blue-50 to-pink-100',
+                  'from-orange-100 via-yellow-50 to-pink-100',
+                  'from-cyan-100 via-blue-50 to-green-100',
+                  'from-red-100 via-pink-50 to-yellow-100',
+                  'from-indigo-100 via-purple-50 to-blue-100',
+                ];
+                const gradient = pastelGradients[idx % pastelGradients.length];
                 return (
                   <div
                     key={achievement.id}
-                    className={`group relative p-6 rounded-xl border-2 transition-all ${
+                    className={`group relative p-8 rounded-3xl border-2 transition-all bg-gradient-to-br ${gradient} ${
                       isComplete
-                        ? 'border-[#4ECDC4] bg-[#F0FAF9]'
-                        : 'border-gray-200 hover:border-[#FFE66D]'
+                        ? 'border-[#4ECDC4] shadow-xl'
+                        : 'border-gray-200 hover:border-yellow-400 shadow-md'
                     }`}
                   >
                     {/* Ribbon for completed achievements */}
                     {isComplete && (
-                      <div className="absolute top-0 right-0 bg-[#4ECDC4] text-white px-4 py-1 text-sm font-bold rounded-bl-xl">
+                      <div className="absolute top-0 right-0 bg-[#4ECDC4] text-white px-4 py-1 text-sm font-bold rounded-bl-2xl shadow-md">
                         UNLOCKED!
                       </div>
                     )}
-
                     <div className="flex items-start gap-4 mb-4">
-                      <div className={`p-3 rounded-xl ${isComplete ? 'bg-[#4ECDC4]' : 'bg-gray-100'}`}>
-                        <Icon className={`h-6 w-6 ${isComplete ? 'text-white' : 'text-gray-600'}`} />
+                      <div className={`p-4 rounded-2xl bg-white shadow-md`}>
+                        <Icon className={`h-8 w-8 ${isComplete ? 'text-[#4ECDC4]' : 'text-yellow-500'}`} />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-[#2D3142] mb-1">
+                        <h3 className="text-2xl font-bold text-[#2D3142] mb-1 font-['Comic_Sans_MS']">
                           {achievement.title}
                         </h3>
-                        <span className="text-sm text-[#4A4A4A]">
+                        <span className="text-base text-[#4A4A4A] font-semibold">
                           {achievement.category}
                         </span>
                       </div>
                     </div>
-
-                    <p className="text-[#6B7280] mb-6 font-['Nunito']">
+                    <p className="text-[#6B7280] mb-6 font-['Nunito'] text-lg">
                       {achievement.description}
                     </p>
-
                     {/* Progress Section */}
                     <div className="space-y-2">
-                      <div className="flex justify-between text-sm font-medium">
+                      <div className="flex justify-between text-base font-bold">
                         <span className="text-[#4A4A4A]">Progress</span>
-                        <span className={`${isComplete ? 'text-[#4ECDC4]' : 'text-[#6B7280]'}`}>
+                        <span className={`${isComplete ? 'text-[#4ECDC4]' : 'text-yellow-500'}`}>
                           {achievement.progress}/{achievement.total}
                         </span>
                       </div>
-                      <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+                      <div className="h-4 bg-white rounded-full overflow-hidden border border-yellow-100">
                         <div
                           style={{ width: `${progressPercentage}%` }}
-                          className={`h-full transition-all duration-500 ${
-                            isComplete ? 'bg-[#4ECDC4]' : 'bg-[#FFE66D]'
+                          className={`h-full transition-all duration-500 rounded-full ${
+                            isComplete ? 'bg-[#4ECDC4]' : 'bg-yellow-300'
                           }`}
                         />
                       </div>
@@ -190,19 +201,19 @@ const categories = ['all', ...new Set(achievements.map(a => a.category.toLowerCa
           </>
         ) : (
           <div className="min-h-[60vh] flex flex-col items-center justify-center p-8 text-center">
-            <div className="max-w-md space-y-6">
-              <Lock className="h-14 w-14 sm:h-16 sm:w-16 text-gray-400 mx-auto" />
-              <h2 className="text-3xl font-bold text-[#2D3142] font-['Comic_Sans_MS']">
+            <div className="max-w-md space-y-8">
+              <Lock className="h-20 w-20 text-yellow-300 mx-auto" />
+              <h2 className="text-4xl font-bold text-[#2D3142] font-['Comic_Sans_MS']">
                 Adventure Awaits!
               </h2>
-              <p className="text-[#6B7280] font-['Nunito']">
+              <p className="text-xl text-[#6B7280] font-['Nunito']">
                 Login to start collecting achievements and unlock math superpowers!
               </p>
               <button
                 onClick={handleBeginYourJourney}
-                className="w-full flex justify-center items-center gap-2 bg-transparent border-2 px-6 py-3 md:px-8 md:py-4 border-[#4ECDC4] text-[#4ECDC4] shadow-sm text-m font-medium hover:bg-[#4ECDC4] hover:text-white transition-colors duration-300 text-sm md:text-base"
+                className="group w-full md:w-auto bg-gradient-to-r from-pink-500 to-red-500 text-white px-10 py-5 md:px-12 md:py-6 font-bold text-xl md:text-2xl rounded-full hover:from-pink-600 hover:to-red-600 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-xl border-2 border-pink-300"
               >
-                Begin Your Journey
+                🚀 Begin Your Journey
               </button>
             </div>
           </div>
